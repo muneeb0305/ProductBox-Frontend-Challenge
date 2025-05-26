@@ -25,8 +25,14 @@ export const CartProvider = ({ children }) => {
     });
   };
 
+  // Clear the localStoage and cartitems
+  const handleClearItems = () => {
+    localStorage.setItem("cartItems", JSON.stringify([]));
+    setCartItems([]);
+  };
+
   return (
-    <CartContext.Provider value={{ cartItems, addToCart }}>
+    <CartContext.Provider value={{ cartItems, addToCart, handleClearItems }}>
       {children}
     </CartContext.Provider>
   );
