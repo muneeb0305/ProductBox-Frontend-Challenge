@@ -1,6 +1,6 @@
 import { ShoppingCart } from "lucide-react";
 
-const ProductCard = ({ id, name, price, img }) => {
+const ProductCard = ({ id, name, price, img, onAddToCart, isAdded }) => {
   return (
     <div className="bg-white bg-opacity-90 rounded-xl shadow-xl p-6 flex flex-col justify-between transform transition hover:scale-105 hover:shadow-2xl">
       {/* Product image */}
@@ -19,10 +19,15 @@ const ProductCard = ({ id, name, price, img }) => {
       {/* Add to cart button */}
       <button
         onClick={() => onAddToCart(id)}
-        className={`mt-auto flex items-center justify-center gap-2 rounded-md px-4 py-2 text-white font-semibold bg-blue-600 hover:bg-blue-700`}
+        disabled={isAdded}
+        className={`mt-auto flex items-center justify-center gap-2 rounded-md px-4 py-2 text-white font-semibold ${
+          isAdded
+            ? "bg-gray-400 cursor-not-allowed"
+            : "bg-blue-600 hover:bg-blue-700"
+        } transition`}
       >
         <ShoppingCart className="w-5 h-5" />
-        Add to Cart
+        {isAdded ? "Added" : "Add to Cart"}
       </button>
     </div>
   );

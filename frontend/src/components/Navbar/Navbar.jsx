@@ -2,9 +2,11 @@ import { ShoppingCart, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { menuItems } from "../../data/menu-items";
+import { useCart } from "../../context/CartContext";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { cartItems } = useCart();
 
   return (
     <nav className="sticky top-0 z-50 bg-white bg-opacity-30 backdrop-blur-md shadow-lg">
@@ -32,7 +34,7 @@ const Navbar = () => {
             <Link to={"/checkout"} className="relative cursor-pointer group">
               <ShoppingCart className="w-7 h-7 text-blue-600 transition-transform duration-300 group-hover:scale-110" />
               <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-semibold w-5 h-5 flex items-center justify-center rounded-full animate-pulse">
-                1
+                {cartItems.length}
               </span>
             </Link>
           </div>
@@ -77,7 +79,9 @@ const Navbar = () => {
             className="flex items-center gap-3 pt-2 border-t border-gray-200"
           >
             <ShoppingCart className="w-6 h-6 text-blue-600" />
-            <span className="text-sm font-medium text-gray-700">Cart (1)</span>
+            <span className="text-sm font-medium text-gray-700">
+              Cart ({cartItems.length})
+            </span>
           </Link>
         </div>
       </div>
