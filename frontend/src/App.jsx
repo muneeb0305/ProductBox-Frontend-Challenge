@@ -1,17 +1,17 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { routes } from "./data/routes";
+import Navbar from "./components/Navbar/Navbar";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <>
-      <p className="text-4xl">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <Router>
+      <Navbar />
+      <Routes>
+        {routes.map(({ path, element }) => (
+          <Route key={path} path={path} element={element} />
+        ))}
+      </Routes>
+    </Router>
   );
 }
 
