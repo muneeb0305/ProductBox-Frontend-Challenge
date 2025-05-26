@@ -7,3 +7,9 @@ export const fetchProducts = async () => {
   const { data } = await axios.get(`${HOST}/items`);
   return data;
 };
+
+// Add Product
+export const addProduct = async (payload) => {
+  const res = await axios.post(`${HOST}/items`, payload);
+  return res;
+};
